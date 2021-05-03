@@ -1,5 +1,5 @@
-serial.setBaudRate(BaudRate.BaudRate115200)
 let SPRITE = game.createSprite(2, 2)
+serial.setBaudRate(BaudRate.BaudRate115200)
 basic.forever(function () {
     basic.pause(500)
     if (input.acceleration(Dimension.Y) < 0) {
@@ -14,10 +14,9 @@ basic.forever(function () {
     if (input.acceleration(Dimension.X) > 0) {
         SPRITE.change(LedSpriteProperty.X, 1)
     }
-})
-basic.forever(function () {
-    basic.pause(500)
-    serial.writeLine("" + (input.acceleration(Dimension.X)))
-    serial.writeLine("" + (input.acceleration(Dimension.Y)))
-    serial.writeLine("" + (input.acceleration(Dimension.Z)))
+    if (input.buttonIsPressed(Button.A)) {
+        SPRITE.set(LedSpriteProperty.X, 2)
+        SPRITE.set(LedSpriteProperty.Y, 2)
+        basic.pause(1000)
+    }
 })
